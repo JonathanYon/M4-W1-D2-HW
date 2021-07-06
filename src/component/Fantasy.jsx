@@ -1,4 +1,5 @@
 
+import { Component } from "react"
 import { Container } from "react-bootstrap"
 import { Row } from "react-bootstrap"
 import { Col } from "react-bootstrap"
@@ -6,12 +7,15 @@ import { Card } from "react-bootstrap"
 import { Button } from "react-bootstrap"
 import cards from "../Data/fantasy.json"
 
-const Fantasy = () => (
-    <Container>
+class Fantasy extends Component {
+
+    state = {}
+    render () {
+    return <Container>
         <Row>          
                     {
                      cards.map(card => (
-                    <Col sm={12} md={3} className="d-flex mb-3 " >  
+                    <Col sm={12} md={3} className="d-flex mb-3 " key={card.asin}>  
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={card.img} className="img-thumbnail"/>
                             <Card.Body>
@@ -19,15 +23,16 @@ const Fantasy = () => (
                                 <Card.Text>
                                 {card.category} 
                                 </Card.Text>
-                                <Button variant="primary">{card.price}</Button>
+                                <Button variant="primary" className="px-5">{card.price}</Button>
                             </Card.Body>
                         </Card>
                         </Col>
-                        ))
+                        )).slice(0, 10)
                     }
         </Row>
     </Container>
-)
+    }
+}
 export default Fantasy
 
 
